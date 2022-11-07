@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { loginSchema, ILogin } from '../../common/validation/auth'
 import Sidebar from '../../components/shared/Sidebar'
-import SignInForm from '../../components/SignIn/Form'
+import SignInForm from '../../components/sign-in/Form'
 import HorizontalCard from '../../components/shared/UI/Cards/Horizontal'
 
 const Home: NextPage = () => {

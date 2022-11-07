@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { signUpSchema, ISignUp } from '../../common/validation/auth'
 import { trpc } from '../../common/client/trpc'
 import Sidebar from '../../components/shared/Sidebar'
-import SignUpForm from '../../components/SignUp/Form'
+import SignUpForm from '../../components/sign-up/Form'
 
 const SignUp: NextPage = () => {
   const router = useRouter()
