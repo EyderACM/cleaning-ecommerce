@@ -3,14 +3,15 @@ import React from 'react'
 import { PasswordInputProps } from '../types'
 
 const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({ isLoading = false, isDisabled = false, classname }, ref) => {
+  ({ isLoading = false, isDisabled = false, classname, ...rest }, ref) => {
     return (
       <input
-        type="password"
         ref={ref}
+        type="password"
         placeholder="******"
         className={classNames('input input-bordered', classname)}
         {...((isLoading || isDisabled) && { disabled: true })}
+        {...rest}
       />
     )
   },

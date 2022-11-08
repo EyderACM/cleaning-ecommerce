@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { useSession, signOut } from 'next-auth/react'
 
 import { requireAuth } from '../../common/requireAuth'
+import Navbar from '../../components/shared/Navbar'
 
 export const getServerSideProps = requireAuth(async (ctx) => {
   return { props: {} }
@@ -12,32 +13,28 @@ const Dashboard: NextPage = () => {
   const { data } = useSession()
 
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content">
-        <div className="max-w-lg">
-          <h1 className="text-5xl text-center font-bold leading-snug text-gray-400">
-            You are logged in!
-          </h1>
-          <p className="my-4 text-center leading-loose">
-            You are allowed to visit this page because you have a session,
-            otherwise you would be redirected to the login page.
-          </p>
-          <div className="my-4 bg-gray-700 rounded-lg p-4">
-            <pre>
-              <code>{JSON.stringify(data, null, 2)}</code>
-            </pre>
-          </div>
-          <div className="text-center">
-            <button
-              className="btn btn-secondary"
-              onClick={() => signOut({ callbackUrl: '/' })}
-            >
-              Logout
-            </button>
+    <main className="h-screen">
+      <Navbar />
+      <div className="hero h-5/6 bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <img
+            src="https://placeimg.com/260/400/arch"
+            className="max-w-sm rounded-lg shadow-2xl"
+          />
+          <div>
+            <h1 className="text-5xl font-bold">
+              Welcome to the #1 cleaning store!
+            </h1>
+            <p className="py-6">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+            <button className="btn btn-primary">Surprise me!</button>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useCallback, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -34,7 +34,9 @@ const Home: NextPage = () => {
           <SignInForm
             isLoading={isLoading}
             register={register}
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={(e: FormEvent) => {
+              handleSubmit(onSubmit)(e)
+            }}
           />
           <Sidebar>
             <Sidebar.TitleContainer>

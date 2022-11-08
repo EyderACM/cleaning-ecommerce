@@ -1,13 +1,14 @@
 import classNames from 'classnames'
 import Link from 'next/link'
-import { FC, useMemo } from 'react'
+import { FC, FormEvent, useMemo } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import { ISignUp } from '../../../common/validation/auth'
 import EmailInput from '../../shared/Form/EmailInput'
 import PasswordInput from '../../shared/Form/PasswordInput'
+import TextInput from '../../shared/Form/TextInput'
 
 const SignInForm: FC<{
-  onSubmit: () => void
+  onSubmit: (e: FormEvent) => void
   register: UseFormRegister<ISignUp>
   isLoading?: boolean
 }> = ({ onSubmit, register, isLoading = false }) => {
@@ -27,6 +28,16 @@ const SignInForm: FC<{
         </div>
 
         <div className="flex flex-col items-center w-full bg-base-100 ">
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Username</span>
+            </label>
+            <TextInput
+              isLoading={isLoading}
+              classname="w-full"
+              {...register('username')}
+            />
+          </div>
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Email</span>

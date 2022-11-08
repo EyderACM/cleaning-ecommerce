@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useCallback } from 'react'
+import { FormEvent, useCallback } from 'react'
+import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -22,7 +23,7 @@ const SignUp: NextPage = () => {
     async (data: ISignUp) => {
       const result = await mutateAsync(data)
       if (result.status === 201) {
-        router.push('/')
+        await signIn('credentials', { ...data, callbackUrl: '/store' })
       }
     },
     [mutateAsync, router],
@@ -52,7 +53,9 @@ const SignUp: NextPage = () => {
           <SignUpForm
             isLoading={isLoading}
             register={register}
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={(e: FormEvent) => {
+              handleSubmit(onSubmit)(e)
+            }}
           />
         </div>
       </main>

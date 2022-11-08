@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 import Link from 'next/link'
-import { FC, useMemo } from 'react'
+import { FC, FormEvent, useMemo } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import { ILogin } from '../../../common/validation/auth'
 import EmailInput from '../../shared/Form/EmailInput'
 import PasswordInput from '../../shared/Form/PasswordInput'
 
 const SignInForm: FC<{
-  onSubmit: () => void
+  onSubmit: (e: FormEvent) => void
   register: UseFormRegister<ILogin>
   isLoading?: boolean
 }> = ({ onSubmit, register, isLoading = false }) => {
@@ -55,7 +55,7 @@ const SignInForm: FC<{
               })}
               type="submit"
             >
-              Login
+              Sign in
             </button>
           </div>
         </div>

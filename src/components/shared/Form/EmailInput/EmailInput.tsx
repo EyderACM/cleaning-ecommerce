@@ -3,14 +3,15 @@ import React from 'react'
 import { EmailInputProps } from '../types'
 
 const EmailInput = React.forwardRef<HTMLInputElement, EmailInputProps>(
-  ({ isLoading = false, isDisabled = false, classname }, ref) => {
+  ({ isLoading = false, isDisabled = false, classname, ...rest }, ref) => {
     return (
       <input
-        type="email"
         ref={ref}
+        type="email"
         placeholder="Enter your email"
         className={classNames('input input-bordered', classname)}
         {...((isLoading || isDisabled) && { disabled: true })}
+        {...rest}
       />
     )
   },
